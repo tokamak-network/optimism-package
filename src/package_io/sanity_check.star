@@ -83,6 +83,11 @@ OP_CONTRACT_DEPLOYER_PARAMS = [
 OP_CONTRACT_DEPLOYER_OVERRIDES = [
     "faultGameAbsolutePrestate",
     "vmType",
+    "faultGameMaxClockDuration",
+    "faultGameClockExtension",
+    "faultGameMaxDepth",
+    "faultGameSplitDepth",
+    "respectedGameType",
 ]
 
 EXTERNAL_L1_NETWORK_PARAMS = [
