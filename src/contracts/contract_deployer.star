@@ -130,18 +130,20 @@ def _build_global_deploy_overrides(optimism_args):
     """
     absolute_prestate = ""
     global_overrides = None
+    overrides = optimism_args.op_contract_deployer_params.overrides
 
-    if (
-        "faultGameAbsolutePrestate"
-        in optimism_args.op_contract_deployer_params.overrides
-    ):
-        absolute_prestate = optimism_args.op_contract_deployer_params.overrides[
-            "faultGameAbsolutePrestate"
-        ]
+    if "faultGameAbsolutePrestate" in overrides:
+        absolute_prestate = overrides["faultGameAbsolutePrestate"]
         global_overrides = {
             "dangerouslyAllowCustomDisputeParameters": True,
             "faultGameAbsolutePrestate": absolute_prestate,
         }
+
+    # Add preimageOracleChallengePeriod override if specified
+    if "preimageOracleChallengePeriod" in overrides:
+        if global_overrides == None:
+            global_overrides = {}
+        global_overrides["preimageOracleChallengePeriod"] = overrides["preimageOracleChallengePeriod"]
 
     return absolute_prestate, global_overrides
 
@@ -197,7 +199,7 @@ def _build_chain_intent(
                     "vmType": vm_type,
                     "useCustomOracle": False,
                     "oracleMinProposalSize": 0,
-                    "oracleChallengePeriodSeconds": 0,
+                    "oracleChallengePeriodSeconds": overrides.get("preimageOracleChallengePeriod", 0),
                     "makeRespected": False,
                 }
             ],
