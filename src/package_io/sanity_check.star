@@ -88,6 +88,7 @@ OP_CONTRACT_DEPLOYER_OVERRIDES = [
     "faultGameMaxDepth",
     "faultGameSplitDepth",
     "respectedGameType",
+    "preimageOracleChallengePeriod",
 ]
 
 EXTERNAL_L1_NETWORK_PARAMS = [
