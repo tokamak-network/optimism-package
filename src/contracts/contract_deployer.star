@@ -147,7 +147,7 @@ def _build_global_deploy_overrides(optimism_args):
 
 
 def _build_chain_intent(
-    chain, absolute_prestate, vm_type, altda_args, hardfork_schedule
+    chain, absolute_prestate, vm_type, altda_args, hardfork_schedule, overrides
 ):
     """Build intent configuration for a single chain.
 
@@ -191,8 +191,8 @@ def _build_chain_intent(
                     "faultGameAbsolutePrestate": absolute_prestate,
                     "faultGameMaxDepth": 73,
                     "faultGameSplitDepth": 30,
-                    "faultGameClockExtension": 10800,
-                    "faultGameMaxClockDuration": 302400,
+                    "faultGameClockExtension": overrides.get("faultGameClockExtension", 10800),
+                    "faultGameMaxClockDuration": overrides.get("faultGameMaxClockDuration", 302400),
                     "dangerouslyAllowCustomDisputeParameters": True,
                     "vmType": vm_type,
                     "useCustomOracle": False,
@@ -254,7 +254,7 @@ def _build_deployment_intent(
     for _, chain in enumerate(optimism_args.chains):
         hardfork_schedule = _build_hardfork_schedule(chain)
         chain_intent = _build_chain_intent(
-            chain, absolute_prestate, vm_type, altda_args, hardfork_schedule
+            chain, absolute_prestate, vm_type, altda_args, hardfork_schedule, overrides
         )
         intent["chains"].append(chain_intent)
 
