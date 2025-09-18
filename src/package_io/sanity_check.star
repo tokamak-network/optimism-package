@@ -89,6 +89,12 @@ OP_CONTRACT_DEPLOYER_OVERRIDES = [
     "faultGameSplitDepth",
     "respectedGameType",
     "preimageOracleChallengePeriod",
+    "deployRAT",
+    "ratPerTestBondAmount",
+    "ratEvidenceSubmissionPeriod",
+    "ratMinimumStakingBalance",
+    "ratTriggerProbability",
+    "ratManager",
 ]
 
 EXTERNAL_L1_NETWORK_PARAMS = [

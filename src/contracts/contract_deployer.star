@@ -145,6 +145,15 @@ def _build_global_deploy_overrides(optimism_args):
             global_overrides = {}
         global_overrides["preimageOracleChallengePeriod"] = overrides["preimageOracleChallengePeriod"]
 
+    # Add RAT configuration overrides if specified
+    rat_params = ["deployRAT", "ratPerTestBondAmount", "ratEvidenceSubmissionPeriod",
+                  "ratMinimumStakingBalance", "ratTriggerProbability", "ratManager"]
+    for param in rat_params:
+        if param in overrides:
+            if global_overrides == None:
+                global_overrides = {}
+            global_overrides[param] = overrides[param]
+
     return absolute_prestate, global_overrides
 
 
@@ -201,6 +210,12 @@ def _build_chain_intent(
                     "oracleMinProposalSize": 0,
                     "oracleChallengePeriodSeconds": overrides.get("preimageOracleChallengePeriod", 0),
                     "makeRespected": False,
+                    "deployRAT": overrides.get("deployRAT", False),
+                    "ratPerTestBondAmount": overrides.get("ratPerTestBondAmount", 10000000000000000),
+                    "ratEvidenceSubmissionPeriod": overrides.get("ratEvidenceSubmissionPeriod", 3600),
+                    "ratMinimumStakingBalance": overrides.get("ratMinimumStakingBalance", 1000000000000000000),
+                    "ratTriggerProbability": overrides.get("ratTriggerProbability", 10000),
+                    "ratManager": overrides.get("ratManager", "0x0000000000000000000000000000000000000000"),
                 }
             ],
             "dangerousAltDAConfig": {
