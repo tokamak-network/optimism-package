@@ -146,8 +146,8 @@ def _build_global_deploy_overrides(optimism_args):
         global_overrides["preimageOracleChallengePeriod"] = overrides["preimageOracleChallengePeriod"]
 
     # Add RAT configuration overrides if specified
-    rat_params = ["deployRAT", "ratPerTestBondAmount", "ratEvidenceSubmissionPeriod",
-                  "ratMinimumStakingBalance", "ratTriggerProbability", "ratManager"]
+    rat_params = ["deployRAT", "perTestBondAmount", "evidenceSubmissionPeriod",
+                  "minimumStakingBalance", "ratTriggerProbability", "ratManager"]
     for param in rat_params:
         if param in overrides:
             if global_overrides == None:
@@ -211,9 +211,9 @@ def _build_chain_intent(
                     "oracleChallengePeriodSeconds": overrides.get("preimageOracleChallengePeriod", 0),
                     "makeRespected": False,
                     "deployRAT": overrides.get("deployRAT", False),
-                    "ratPerTestBondAmount": overrides.get("ratPerTestBondAmount", 10000000000000000),
-                    "ratEvidenceSubmissionPeriod": overrides.get("ratEvidenceSubmissionPeriod", 3600),
-                    "ratMinimumStakingBalance": overrides.get("ratMinimumStakingBalance", 1000000000000000000),
+                    "perTestBondAmount": overrides.get("perTestBondAmount", 10000000000000000),
+                    "evidenceSubmissionPeriod": overrides.get("evidenceSubmissionPeriod", 3600),
+                    "minimumStakingBalance": overrides.get("minimumStakingBalance", 1000000000000000000),
                     "ratTriggerProbability": overrides.get("ratTriggerProbability", 10000),
                     "ratManager": overrides.get("ratManager", "0x0000000000000000000000000000000000000000"),
                 }

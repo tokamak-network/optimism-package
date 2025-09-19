@@ -90,9 +90,9 @@ OP_CONTRACT_DEPLOYER_OVERRIDES = [
     "respectedGameType",
     "preimageOracleChallengePeriod",
     "deployRAT",
-    "ratPerTestBondAmount",
-    "ratEvidenceSubmissionPeriod",
-    "ratMinimumStakingBalance",
+    "perTestBondAmount",
+    "evidenceSubmissionPeriod",
+    "minimumStakingBalance",
     "ratTriggerProbability",
     "ratManager",
 ]
