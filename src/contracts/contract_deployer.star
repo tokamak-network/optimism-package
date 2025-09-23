@@ -148,11 +148,25 @@ def _build_global_deploy_overrides(optimism_args):
     # Add RAT configuration overrides if specified
     rat_params = ["deployRAT", "perTestBondAmount", "evidenceSubmissionPeriod",
                   "minimumStakingBalance", "ratTriggerProbability", "ratManager"]
+
+    # Type mapping definition
+    rat_param_types = {
+        "deployRAT": bool,
+        "perTestBondAmount": str,
+        "evidenceSubmissionPeriod": int,
+        "minimumStakingBalance": str,
+        "ratTriggerProbability": str,
+        "ratManager": str
+    }
+
     for param in rat_params:
         if param in overrides:
             if global_overrides == None:
                 global_overrides = {}
-            global_overrides[param] = overrides[param]
+
+            # Convert according to type
+            target_type = rat_param_types[param]
+            global_overrides[param] = target_type(overrides[param])
 
     return absolute_prestate, global_overrides
 
