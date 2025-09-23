@@ -211,10 +211,10 @@ def _build_chain_intent(
                     "oracleChallengePeriodSeconds": overrides.get("preimageOracleChallengePeriod", 0),
                     "makeRespected": False,
                     "deployRAT": overrides.get("deployRAT", False),
-                    "perTestBondAmount": overrides.get("perTestBondAmount", 10000000000000000),
+                    "perTestBondAmount": overrides.get("perTestBondAmount", "10000000000000000"),
                     "evidenceSubmissionPeriod": overrides.get("evidenceSubmissionPeriod", 3600),
-                    "minimumStakingBalance": overrides.get("minimumStakingBalance", 1000000000000000000),
-                    "ratTriggerProbability": overrides.get("ratTriggerProbability", 10000),
+                    "minimumStakingBalance": overrides.get("minimumStakingBalance", "1000000000000000000"),
+                    "ratTriggerProbability": overrides.get("ratTriggerProbability", "10000"),
                     "ratManager": overrides.get("ratManager", "0x0000000000000000000000000000000000000000"),
                 }
             ],
